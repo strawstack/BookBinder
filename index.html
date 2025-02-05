@@ -4,8 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookmarklet</title>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0px;
+        }
+        .load {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px;
+            background: #777;
+            color: white;
+            cursor: pointer;
+            height: 40px;
+            width: 120px;
+            transition: background 0.2s;
+
+            &:hover {
+                background: #222;
+            }
+        }
+        .output {
+            margin: 30px;
+        }
+    </style>
   </head>
   <body>
+
+    <label class="load" for="file">Load</label>
+    <input id="file" name="file" type="file" style="display: none;"></input>
+
+    <div class="output"></div>
+
     <script type="module" src="main.js"></script>
     <script type="module">
         import { main } from "./main.js";

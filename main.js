@@ -2,16 +2,15 @@ import { bind } from "./bind.js";
 
 export function main() {
 
-    const source = `
-        function main() {
-            // This is a comment
-            alert("sandwitch");
-        }
-        // This is another comment
-        main();
-    `;
+    const input = document.querySelector("#file");
+    const output = document.querySelector(".output") 
 
-    console.log(
-        bind(source)
-    );
+    input.addEventListener("change", e => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsText(file, 'UTF-8');
+        reader.onload = readerEvent => {
+            output.innerHTML = bind(readerEvent.target.result);
+        };
+    });
 }

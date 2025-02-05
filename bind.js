@@ -6,11 +6,14 @@ export function bind(source) {
     return `javascript:(() => { ${line} })()`;
 }
 
-process.stdin.on('readable', () => {
-    let data;
-    while ((data = process.stdin.read()) !== null)
-    console.log(bind(data.toString()));
-});
+try {
+    process.stdin.on('readable', () => {
+        let data;
+        while ((data = process.stdin.read()) !== null)
+        console.log(bind(data.toString()));
+    });
+} catch(e) {} // process not defined
+
 
 // If passed a command line arg, this program assumes
 // this is a filepath to a source file and will console log
